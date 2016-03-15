@@ -18,9 +18,9 @@ public class FruitTest {
 	@Test
 	public void addTest() throws Exception{
 		assertEquals(fruits.size(), 0);
-		fruits.add(1, apple);
+		fruits.add(0, apple);
 		assertEquals(fruits.size(), 1);
-		fruits.add(2, pear);
+		fruits.add(1, pear);
 		assertEquals(fruits.size(), 2);
 	}
 }
