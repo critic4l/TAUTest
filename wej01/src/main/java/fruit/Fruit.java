@@ -6,8 +6,7 @@ import java.util.List;
 public class Fruit {
 	
 	public String name;
-	public String origin;
-	
+	public String origin;	
 	
 	public Fruit(String name, String origin) {
 		super();
@@ -30,4 +29,5 @@ public class Fruit {
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
+
 }

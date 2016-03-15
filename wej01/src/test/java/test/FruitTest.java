@@ -8,19 +8,28 @@ import java.util.List;
 import org.junit.Test;
 
 import fruit.Fruit;
+import fruit.FruitManager;
 
 public class FruitTest {
 	Fruit apple = new Fruit("Apple", "Spain");
 	Fruit pear = new Fruit("Pear", "Poland");
-	
-	public List<Fruit> fruits = new ArrayList<>();
+	FruitManager fm = new FruitManager();
 	
 	@Test
 	public void addTest() throws Exception{
-		assertEquals(fruits.size(), 0);
-		fruits.add(0, apple);
-		assertEquals(fruits.size(), 1);
-		fruits.add(1, pear);
-		assertEquals(fruits.size(), 2);
+		assertEquals(fm.fruits.size(), 0);
+		fm.dodaj(apple);
+		assertEquals(fm.fruits.size(), 1);
+		assertEquals("Apple", fm.fruits.get(0).name);
+		fm.dodaj(pear);
+		assertEquals(fm.fruits.size(), 2);
+		assertEquals("Pear", fm.fruits.get(1).name);
+	}
+	
+	@Test
+	public void getTest() throws Exception{
+		fm.dodaj(apple);
+		fm.dodaj(pear);
+		assertEquals(2, fm.fruits.size());
 	}
 }
