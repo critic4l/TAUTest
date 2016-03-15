@@ -20,10 +20,10 @@ public class FruitTest {
 		assertEquals(fm.fruits.size(), 0);
 		fm.dodaj(apple);
 		assertEquals(fm.fruits.size(), 1);
-		assertEquals("Apple", fm.fruits.get(0).name);
+		assertEquals("Apple", fm.fruits.get(0).getName());
 		fm.dodaj(pear);
 		assertEquals(fm.fruits.size(), 2);
-		assertEquals("Pear", fm.fruits.get(1).name);
+		assertEquals("Pear", fm.fruits.get(1).getName());
 	}
 	
 	@Test
