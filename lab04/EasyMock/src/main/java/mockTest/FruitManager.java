@@ -13,7 +13,7 @@ public class FruitManager {
 	public void add(Fruit f){
 		fruits.add(f);
 	}
-	
+							
 	public IMyList getAll(){
 		return fruits;
 	}	
