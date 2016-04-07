@@ -16,7 +16,7 @@ public class MockTest {
 	
 	@Mock
 	private IMyList mock;
-	
+	//TEST LAPTOPA
 	@TestSubject
 	private FruitManager fm = new FruitManager(mock);
 	
