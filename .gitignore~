@@ -5,5 +5,4 @@
 /log
 *.log
 */target
-/.settings
-.DS_STORE
+*/.settings
