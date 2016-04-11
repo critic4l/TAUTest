@@ -10,7 +10,7 @@ public class Calculator {
 	}
 	
 	public int subtract(){
-		return leftOp * rightOp;
+		return leftOp - rightOp;
 	}
 
 	public int getLeftOp() {
