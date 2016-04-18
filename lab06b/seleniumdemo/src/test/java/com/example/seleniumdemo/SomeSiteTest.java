@@ -46,7 +46,7 @@ public class SomeSiteTest {
 	public void rejestracja(){
 		driver.get("http://poczta.wp.pl");
 		driver.findElement(By.linkText("za³ó¿ konto")).click();
-		element = driver.findElement(By.name("imie"));
+		element = driver.findElement(By.xpath("//*[@id=\"firstName\"]"));
 		element.sendKeys("Artur");
 		driver.findElement(By.name("nazwisko")).sendKeys("Milancej");
 		driver.findElement(By.id("plec-mê¿czyzna")).click();
@@ -62,7 +62,7 @@ public class SomeSiteTest {
 		oSelect.selectByVisibleText("œrednie");
 		oSelect = new Select(driver.findElement(By.name("zawod")));
 		oSelect.selectByVisibleText("student");
-		driver.findElement(By.id("zgodaTerms")).click();
+		driver.findElement(By.xpath("//*[@id=\"zgodaTerms\"]")).click();
 		//driver.findElement(By.id("btnSubmit")).click();
 		
 		element.clear();
