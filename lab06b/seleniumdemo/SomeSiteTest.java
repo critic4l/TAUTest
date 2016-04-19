@@ -38,18 +38,18 @@ public class SomeSiteTest {
 	public void homePage(){
 		
 		driver.get("http://poczta.wp.pl");
-		element = driver.findElement(By.linkText("za³ó¿ konto"));
+		element = driver.findElement(By.linkText("zaÅ‚Ã³Å¼ konto"));
 		assertNotNull(element);
 	}
 	
 	@Test
 	public void rejestracja(){
 		driver.get("http://poczta.wp.pl");
-		driver.findElement(By.linkText("za³ó¿ konto")).click();
+		driver.findElement(By.linkText("zaÅ‚Ã³Å¼ konto")).click();
 		element = driver.findElement(By.xpath("//*[@id=\"firstName\"]"));
 		element.sendKeys("Artur");
 		driver.findElement(By.name("nazwisko")).sendKeys("Milancej");
-		driver.findElement(By.id("plec-mê¿czyzna")).click();
+		driver.findElement(By.id("plec-mÄ™Å¼czyzna")).click();
 		driver.findElement(By.name("dzienUrodzin")).sendKeys("12");
 		driver.findElement(By.name("miesiacUrodzin")).sendKeys("12");
 		driver.findElement(By.name("rokUrodzin")).sendKeys("1991");
@@ -57,9 +57,9 @@ public class SomeSiteTest {
 		driver.findElement(By.name("newPassword1")).sendKeys("asdfasdfasdf1!");
 		driver.findElement(By.name("newPassword2")).sendKeys("123!");
 		oSelect = new Select(driver.findElement(By.name("wielkoscMiejscowosci")));
-		oSelect.selectByVisibleText("wieœ");
+		oSelect.selectByVisibleText("wieÅ›");
 		oSelect = new Select(driver.findElement(By.name("wyksztalcenie")));
-		oSelect.selectByVisibleText("œrednie");
+		oSelect.selectByVisibleText("Å›rednie");
 		oSelect = new Select(driver.findElement(By.name("zawod")));
 		oSelect.selectByVisibleText("student");
 		driver.findElement(By.xpath("//*[@id=\"zgodaTerms\"]")).click();
@@ -67,11 +67,11 @@ public class SomeSiteTest {
 		
 		element.clear();
 		
-		//sprawdzamy czy wyskoczy³ error
+		//sprawdzamy czy wyskoczyï¿½ error
 		assertEquals("txt error", driver.findElement(By.id("passwordRepeat")).getAttribute("class"));
-		//sprawdzamy czy wyczyœci³o text field"
+		//sprawdzamy czy wyczyï¿½ciï¿½o text field"
 		assertEquals("", element.getAttribute("value"));
-		//sprawdzamy ¿e radio button plci kobieta jest odznaczony
+		//sprawdzamy ï¿½e radio button plci kobieta jest odznaczony
 		assertFalse(driver.findElement(By.id("plec-kobieta")).isSelected());
 	}
 

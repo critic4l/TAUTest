@@ -1,0 +1,5 @@
+com\example\webguidemo\Pages.class
+com\example\webguidemo\PocztaWPWebTest.class
+com\example\webguidemo\pages\Home.class
+com\example\webguidemo\pages\Mail.class
+com\example\webguidemo\PocztaWPSteps.class
