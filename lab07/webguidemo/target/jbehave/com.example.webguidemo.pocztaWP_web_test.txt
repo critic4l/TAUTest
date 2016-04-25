@@ -1,6 +1,6 @@
 
 (com/example/webguidemo/pocztaWP_web_test.story)
-Scenario: User goes from home page to mail page
+Scenario: 
 Given user is on Home page
 When user opens Mail link
 Then Mail page is shown

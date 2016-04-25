@@ -34,7 +34,7 @@ public class PocztaWPSteps {
  
     @Then("Mail page is shown")
     public void mailPageIsShown(){
-       assertEquals("Poczta - Najlepsza Poczta, najwiêksze za³¹czniki - WP", pages.mail().getTitle());
+    	assertTrue(pages.mail().getTitle().contains("Poczta"));
     }	
     
     @Then("types login and password")
