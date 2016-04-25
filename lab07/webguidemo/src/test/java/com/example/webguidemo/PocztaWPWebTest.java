@@ -36,7 +36,7 @@ public class PocztaWPWebTest extends JUnitStories {
     private ContextView contextView = new LocalFrameContextView().sized(500, 100);
 
     public PocztaWPWebTest() {
-    	System.setProperty("webdriver.chrome.driver", "C:/Users/Lusi/Desktop/Artur/chromedriver.exe");
+    	System.setProperty("webdriver.chrome.driver", "D:/DEV/chromedriver/chromedriver.exe");
 	}
 
 	@Override

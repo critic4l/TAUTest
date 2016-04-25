@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.text.*;
+import org.openqa.selenium.support.ui.Select;
 
 import static org.junit.Assert.*;
 
@@ -14,7 +15,9 @@ public class PocztaWPSteps {
 	
 	private final Pages pages;
 	WebElement element;
-
+	Select oSelect;
+	private boolean isChecked;
+	
 	public PocztaWPSteps(Pages pages) {
 		this.pages = pages;
 	}
@@ -40,6 +43,24 @@ public class PocztaWPSteps {
     	element.sendKeys("Allahu");
     	pages.mail().findElement(By.id("password")).sendKeys("Allahu");
     	assertFalse(element.getAttribute("value").isEmpty());
+    }
+    
+    @When("user opens register")
+    public void userClicksOnRegister(){
+    	pages.register().open();
+    }
+    
+    @Then("clicks on size of town select list")
+    public void userClicksOnSelectList(){
+    	oSelect = new Select(pages.mail().findElement(By.name("wielkoscMiejscowosci")));
+    	assertNotNull(oSelect);
+    }
+    
+    @Then("accepts register terms")
+    public void selectSomething(){
+    	element = pages.register().findElement(By.id("zgodaTerms"));
+    	element.click();
+    	assertTrue(element.isSelected());
     }
 
 }

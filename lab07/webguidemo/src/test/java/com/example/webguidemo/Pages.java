@@ -3,6 +3,7 @@ package com.example.webguidemo;
 import org.jbehave.web.selenium.WebDriverProvider;
 
 import com.example.webguidemo.pages.Mail;
+import com.example.webguidemo.pages.Register;
 import com.example.webguidemo.pages.Home;
 
 public class Pages {
@@ -12,6 +13,7 @@ public class Pages {
 	//Pages
 	private Home home;
 	private Mail mail;
+	private Register register;
 	// ...
 
 	public Pages(WebDriverProvider driverProvider) {
@@ -31,5 +33,12 @@ public class Pages {
 			mail = new Mail(driverProvider);
 		}
 		return mail;
+	}
+	
+	public Register register(){
+		if (register == null){
+			register = new Register(driverProvider);
+		}
+		return register;
 	}
 }
