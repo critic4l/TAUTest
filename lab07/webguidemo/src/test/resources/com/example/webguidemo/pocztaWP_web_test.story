@@ -14,4 +14,4 @@ When user opens register
 Then accepts register terms
 
 When user opens register
-Then chooses wies in city size select list
+Then chooses zawodowe in wyksztalcenie list
