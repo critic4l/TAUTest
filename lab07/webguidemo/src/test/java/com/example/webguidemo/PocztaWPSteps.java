@@ -57,12 +57,12 @@ public class PocztaWPSteps {
     	assertNotNull(oSelect);
     }
     
-    @Then("chooses zawodowe in wyksztalcenie list")
-    public void userChooseCitySize(){
+    @Then("chooses $wyksz in wyksztalcenie list")
+    public void userChooseCitySize(String wyksz){
     	oSelect = new Select(pages.mail().findElement(By.name("wyksztalcenie")));
-    	oSelect.selectByVisibleText("zawodowe");    	
+    	oSelect.selectByVisibleText(wyksz);    	
     	option = oSelect.getFirstSelectedOption();
-    	assertEquals("zawodowe", option.getText());
+    	assertEquals(wyksz, option.getText());
     }
     
     @Then("accepts register terms")
