@@ -17,6 +17,7 @@ public class PocztaWPSteps {
 	WebElement element;
 	Select oSelect;
 	private boolean isChecked;
+	WebElement option;
 	
 	public PocztaWPSteps(Pages pages) {
 		this.pages = pages;
@@ -54,6 +55,14 @@ public class PocztaWPSteps {
     public void userClicksOnSelectList(){
     	oSelect = new Select(pages.mail().findElement(By.name("wielkoscMiejscowosci")));
     	assertNotNull(oSelect);
+    }
+    
+    @Then("chooses wies in city size select list")
+    public void userChooseCitySize(){
+    	oSelect = new Select(pages.mail().findElement(By.name("wielkoscMiejscowosci")));
+    	oSelect.selectByVisibleText("wieœ");    	
+    	option = oSelect.getFirstSelectedOption();
+    	assertEquals("wieœ", option.getText());
     }
     
     @Then("accepts register terms")
