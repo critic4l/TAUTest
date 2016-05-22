@@ -10,6 +10,7 @@ import com.example.jdbcdemo.domain.Person;
 
 public class PersonManagerTest {
 	
+	//poprawka do gita
 	
 	PersonManager personManager = new PersonManager();
 	
