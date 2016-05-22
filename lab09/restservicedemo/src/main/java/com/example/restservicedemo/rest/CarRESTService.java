@@ -34,6 +34,13 @@ public class CarRESTService {
 		return Response.status(201).entity("Car").build();
 	}
 	
+	@GET
+	@Path("/test")
+	@Produces(MediaType.TEXT_HTML)
+	public String test() {
+		return "REST API /car is running";
+	}
+	
 	@DELETE
 	public Response clearCars() {
 		cm.clearCars();
