@@ -22,7 +22,8 @@ public class PersonManager {
 	private PreparedStatement deleteAllPersonsStmt;
 	private PreparedStatement getAllPersonsStmt;
 	private PreparedStatement getPersonByIdStmt;
-
+	private PreparedStatement personJoinCar;
+	
 	private Statement statement;
 
 	public PersonManager() {
@@ -51,6 +52,8 @@ public class PersonManager {
 					.prepareStatement("SELECT id, name, yob FROM Person");
 			getPersonByIdStmt = connection
 					.prepareStatement("SELECT id, name, yob FROM Person where id = ?");
+			personJoinCar = connection
+					.prepareStatement("SELECT * FROM Person INNER JOIN Car ON Person.id =  Car.id");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -123,5 +126,4 @@ public class PersonManager {
 
 		return p;
 	}
-
 }
