@@ -11,12 +11,14 @@ import javax.ws.rs.core.MediaType;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.example.restservicedemo.domain.Car;
 import com.example.restservicedemo.domain.Person;
 import com.jayway.restassured.RestAssured;
 
 public class PersonServiceTest {
 	
 	private static final String PERSON_FIRST_NAME = "Jasiu";
+	private static final String CAR_MODEL = "Corsa";
 	
 	@BeforeClass
     public static void setUp(){
@@ -43,6 +45,4 @@ public class PersonServiceTest {
 		assertThat(PERSON_FIRST_NAME, equalToIgnoringCase(rPerson.getFirstName()));
 		
 	}
-	
-
 }

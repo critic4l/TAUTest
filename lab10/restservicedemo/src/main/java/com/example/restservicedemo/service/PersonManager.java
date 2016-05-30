@@ -34,6 +34,7 @@ public class PersonManager {
 	private PreparedStatement getAllPersonsWithCarsStmt;
 	private PreparedStatement getCarWithOwnerStmt;
 	private PreparedStatement getAllCarsStmt;
+	private PreparedStatement deleteAllCarsStmt;
 
 	private Statement statement;
 
@@ -70,9 +71,9 @@ public class PersonManager {
 			deleteAllPersonsStmt = connection.prepareStatement("DELETE FROM Person");
 			getAllPersonsStmt = connection.prepareStatement("SELECT p_id, name, yob FROM Person");
 			getPersonByIdStmt = connection.prepareStatement("SELECT p_id, name, yob FROM Person where p_id = ?");
-
+			
 			addCarStmt = connection.prepareStatement("INSERT INTO Car (model, yop) VALUES (?, ?)");
-
+			deleteAllCarsStmt = connection.prepareStatement("DELETE FROM Car");
 			sellCarStmt = connection.prepareStatement("UPDATE Car SET owner_id = ? WHERE c_id = ?");
 
 			getAllPersonsWithCarsStmt = connection.prepareStatement(
@@ -95,6 +96,14 @@ public class PersonManager {
 	public void clearPersons() {
 		try {
 			deleteAllPersonsStmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void clearCars() {
+		try {
+			deleteAllCarsStmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

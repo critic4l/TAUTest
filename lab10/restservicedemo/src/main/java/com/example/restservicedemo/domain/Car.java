@@ -40,12 +40,9 @@ public class Car {
 	public void setYop(int yop) {
 		this.yop = yop;
 	}
-
-
 	public Person getOwner() {
 		return owner;
 	}
-
 	public void setOwner(Person owner) {
 		this.owner = owner;
 	}
