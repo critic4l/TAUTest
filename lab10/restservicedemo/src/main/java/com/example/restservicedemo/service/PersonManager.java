@@ -77,7 +77,7 @@ public class PersonManager {
 			sellCarStmt = connection.prepareStatement("UPDATE Car SET owner_id = ? WHERE c_id = ?");
 
 			getAllPersonsWithCarsStmt = connection.prepareStatement(
-					"SELECT p_id, name, yob, c_id, model, yop, owner_id FROM Person JOIN Car ON owner_id = p_id");
+					"SELECT p_id, name, yob, c_id, model, yop, owner_id FROM Person JOIN Car ON owner_id = p_id  WHERE owner_id = p_id");
 
 			getCarWithOwnerStmt = connection.prepareStatement(
 					"SELECT p_id, name, yob, c_id, model, yop, owner_id FROM Person JOIN Car ON c_id = ?");

@@ -32,7 +32,7 @@ public class PersonServiceTest {
 		
 		delete("/person/").then().assertThat().statusCode(200);
 		
-		Person person = new Person(1L, PERSON_FIRST_NAME, 1976);
+		Person person = new Person(PERSON_FIRST_NAME, 1976);
 		
 		given().
 	       contentType(MediaType.APPLICATION_JSON).
@@ -46,13 +46,21 @@ public class PersonServiceTest {
 		
 	}
 	
+	//no nie... to nie działa :/
 	@Test
 	public void addCars() {
-		Car car = new Car(1L, "Opel Corsa", 1996);
+		
+		delete("/person/").then().assertThat().statusCode(200);
+		
+		Car car = new Car(CAR_MODEL, 1996);
 		given().
 			contentType(MediaType.APPLICATION_JSON).
 			body(car).
 			when().	     
-		post("/person/car/").then().assertThat().statusCode(201);
+		post("/person/car").then().assertThat().statusCode(201);
+		
+		Car rCar = get("/person/car/0").as(Car.class);
+				
+		assertThat(CAR_MODEL, equalToIgnoringCase(rCar.getModel()));
 	}
 }

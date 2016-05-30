@@ -11,6 +11,11 @@ public class Car {
 	
 	private Person owner;
 	
+	public Car(String model, int yop) {
+		this.model = model;
+		this.yop = yop;
+	}
+	
 	public Car(long id, String model, int yop) {
 		super();
 		this.id = id;

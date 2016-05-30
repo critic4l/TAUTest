@@ -35,7 +35,7 @@ public class PersonRESTService {
 		Car c = new Car();
 		c.setId(id);
 		Car car = pm.getCarWithOwner(c);
-		return car;
+		return c;
 	}
 	
 	@POST
@@ -46,6 +46,13 @@ public class PersonRESTService {
 		return Response.status(201).entity("Person").build(); 
 	}
 	
+	@POST
+	@Path("/car/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response addCar(Car car){
+		pm.addCar(car);
+		return Response.status(201).entity("Car").build(); 
+	}
 	
 	@GET
 	@Path("/test")
@@ -59,5 +66,4 @@ public class PersonRESTService {
 		pm.clearPersons();
 		return Response.status(200).build();
 	}
-
 }
