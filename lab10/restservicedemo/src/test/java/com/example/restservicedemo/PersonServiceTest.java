@@ -40,9 +40,19 @@ public class PersonServiceTest {
 	    when().	     
 	    post("/person/").then().assertThat().statusCode(201);
 				
-		Person rPerson = get("/person/1").as(Person.class);
+		Person rPerson = get("/person/0").as(Person.class);
 		
 		assertThat(PERSON_FIRST_NAME, equalToIgnoringCase(rPerson.getFirstName()));
 		
+	}
+	
+	@Test
+	public void addCars() {
+		Car car = new Car(1L, "Opel Corsa", 1996);
+		given().
+			contentType(MediaType.APPLICATION_JSON).
+			body(car).
+			when().	     
+		post("/person/car/").then().assertThat().statusCode(201);
 	}
 }

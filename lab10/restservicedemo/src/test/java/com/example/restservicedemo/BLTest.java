@@ -131,11 +131,33 @@ public class BLTest {
 	
 	@Test
 	public void checkGetAll() {
+		
+		pm.clearCars();
+		pm.clearPersons();
+		
 		List<Person> persons = pm.getAllPersons();
 		List<Car> cars = pm.getAllCars();
 		
-		assertTrue(persons.size() > 1);
-		assertTrue(cars.size() > 1);		
+		assertEquals(0, persons.size());
+		assertEquals(0, cars.size());	
+		
+		Car c = new Car();
+		c.setModel("Syrena");
+		c.setYop(1973);
+
+		assertEquals(1, pm.addCar(c));
+		
+		Person p = new Person();
+		p.setFirstName("Eustachy");
+		p.setYob(1967);
+		
+		assertEquals(1, pm.addPerson(p));
+		
+		persons = pm.getAllPersons();
+		cars = pm.getAllCars();
+		
+		assertEquals(1, persons.size());
+		assertEquals(1, cars.size());
 		
 	}
 	
