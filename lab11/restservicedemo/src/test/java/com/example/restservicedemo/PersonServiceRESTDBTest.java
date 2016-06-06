@@ -23,6 +23,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.example.restservicedemo.domain.Car;
 import com.example.restservicedemo.domain.Person;
 import com.example.restservicedemo.service.PersonManager;
 import com.jayway.restassured.RestAssured;
@@ -69,6 +70,24 @@ public class PersonServiceRESTDBTest {
 		IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(
 				new File("src/test/resources/personData.xml"));
 		ITable expectedTable = expectedDataSet.getTable("PERSON");
+		
+		Assertion.assertEquals(expectedTable, filteredTable);
+	}
+	
+	@Test
+	public void addCar() throws Exception {
+		Car aCar = new Car(2, "Opel", 2011);
+		given().contentType(MediaType.APPLICATION_JSON).body(aCar)
+				.when().post("/cars/").then().assertThat().statusCode(201);
+
+		IDataSet dbDataSet = connection.createDataSet();
+		ITable actualTable = dbDataSet.getTable("CAR");
+		ITable filteredTable = DefaultColumnFilter.excludedColumnsTable
+				(actualTable, new String[]{"OWNER_ID"});
+		
+		IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(
+				new File("src/test/resources/carData.xml"));
+		ITable expectedTable = expectedDataSet.getTable("CAR");
 		
 		Assertion.assertEquals(expectedTable, filteredTable);
 	}

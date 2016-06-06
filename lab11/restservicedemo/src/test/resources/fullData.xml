@@ -4,5 +4,6 @@
   <PERSON P_ID="1" NAME="Lolek" YOB="1972"/>
   <PERSON P_ID="2" NAME="Tola" YOB="1975"/>
   <PERSON P_ID="3" NAME="Reksio" YOB="1975"/>
-  
+  <CAR C_ID="0" MODEL="Audi" YOP="1997"/>
+  <CAR C_ID="1" MODEL="Ford" YOP="1999"/>
 </dataset>

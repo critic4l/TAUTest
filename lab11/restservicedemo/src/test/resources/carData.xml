@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <CAR C_ID="0" MODEL="Audi" YOP="1997"/>
+  <CAR C_ID="1" MODEL="Ford" YOP="1999"/>
+  <CAR C_ID="2" MODEL="Opel" YOP="2011" />
+</dataset>

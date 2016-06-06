@@ -10,9 +10,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.example.restservicedemo.domain.Car;
+import com.example.restservicedemo.service.PersonManager;
 
 @Path("cars")
 public class CarFakeRESTService {	
+	
+	private PersonManager pm = new PersonManager();
 	
 	@GET
 	@Path("/{carId}")
@@ -24,10 +27,10 @@ public class CarFakeRESTService {
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createTrackInJSON(Car car) {
- 
-		String result = "Car saved: " + car;
-		return Response.status(201).entity(result).build(); 
+	public Response addCar(Car car) {
+		
+		pm.addCar(car);
+		return Response.status(201).entity("Car").build(); 
 	}
 
 }
