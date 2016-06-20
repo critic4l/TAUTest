@@ -23,14 +23,14 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.example.restservicedemo.domain.Person;
+import com.example.restservicedemo.domain.Car;
 import com.jayway.restassured.RestAssured;
 
-public class PersonServiceRESTDBTest {
+public class CarFakeRESTServiceTest {
 	
 	private static IDatabaseConnection connection;
 	private static IDatabaseTester databaseTester;
-
+	
 	@BeforeClass
 	public static void setUp() throws Exception{
 		RestAssured.baseURI = "http://localhost";
@@ -49,28 +49,27 @@ public class PersonServiceRESTDBTest {
 		databaseTester.setDataSet(dataSet);
 		databaseTester.onSetup();
 	}
-
-	@Test
-	public void addPeson() throws Exception{
 	
-		Person aPerson = new Person("Ziutek", 2010);
-		given().contentType(MediaType.APPLICATION_JSON).body(aPerson)
-				.when().post("/person/").then().assertThat().statusCode(201);
-		
+	@Test
+	public void addCar() throws Exception {
+		Car aCar = new Car(2, "Opel", 2011);
+		given().contentType(MediaType.APPLICATION_JSON).body(aCar)
+				.when().post("/cars/").then().assertThat().statusCode(201);
+
 		IDataSet dbDataSet = connection.createDataSet();
-		ITable actualTable = dbDataSet.getTable("PERSON");
+		ITable actualTable = dbDataSet.getTable("CAR");
 		ITable filteredTable = DefaultColumnFilter.excludedColumnsTable
-				(actualTable, new String[]{"P_ID"});
+				(actualTable, new String[]{"OWNER_ID", "C_ID"});
 		
 		IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(
-				new File("src/test/resources/personData.xml"));
-		ITable expectedTable = expectedDataSet.getTable("PERSON");
+				new File("src/test/resources/carData.xml"));
+		ITable expectedTable = expectedDataSet.getTable("CAR");
 		
 		Assertion.assertEquals(expectedTable, filteredTable);
 	}
 	
 	@Test
-	public void getAllPersons() throws Exception {
+	public void getAllCars() throws Exception {
 		
 		IDataSet dbDataSet = connection.createDataSet();
 		ITable table = dbDataSet.getTable("PERSON");
@@ -82,5 +81,4 @@ public class PersonServiceRESTDBTest {
 	public static void tearDown() throws Exception{
 		databaseTester.onTearDown();
 	}
-
 }

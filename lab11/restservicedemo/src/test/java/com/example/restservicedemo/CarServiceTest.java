@@ -27,10 +27,8 @@ public class CarServiceTest {
 	}
 	
 	@Test
-	@Ignore
 	public void getCar(){
 		get("/cars/0").then().assertThat().body("model", equalTo("Opel"));
-		
 		
 		Car aCar = get("/cars/0").as(Car.class);
 		
@@ -38,7 +36,6 @@ public class CarServiceTest {
 	}
 	
 	@Test
-	@Ignore
 	public void addCar(){
 		
 		Car aCar = new Car(2, "Ford", 2011);
@@ -47,8 +44,7 @@ public class CarServiceTest {
 		       body(aCar).
 		when().	     
 		post("/cars/").then().assertThat().
-		statusCode(201).
-		body(containsString("Car saved:"));
+		statusCode(201);
 	}
 	
 
