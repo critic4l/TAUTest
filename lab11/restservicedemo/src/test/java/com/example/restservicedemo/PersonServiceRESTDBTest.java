@@ -1,6 +1,6 @@
 package com.example.restservicedemo;
 
-import static com.jayway.restassured.RestAssured.given;
+import static com.jayway.restassured.RestAssured.*;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
@@ -23,6 +23,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.example.restservicedemo.domain.Car;
 import com.example.restservicedemo.domain.Person;
 import com.jayway.restassured.RestAssured;
 
@@ -76,6 +77,49 @@ public class PersonServiceRESTDBTest {
 		ITable table = dbDataSet.getTable("PERSON");
 		
 		assertNotNull(table);
+	}
+	
+	@Test
+	public void clearPersons() throws Exception {
+		
+		IDataSet dbDataSet = connection.createDataSet();
+		ITable table = dbDataSet.getTable("PERSON");
+		
+		assertNotNull(table);
+		
+		delete("/person/").then().assertThat().statusCode(200);
+			
+	}
+	
+	@Test
+	public void sellCar() throws Exception {
+		
+		delete("/person/").then().assertThat().statusCode(200);
+		delete("/cars/").then().assertThat().statusCode(200);
+		Person aPerson = new Person("Stachu", 1943); 
+		Car aCar = new Car(1, "Mercedes", 2007);
+		
+		given().contentType(MediaType.APPLICATION_JSON)
+			.body(aCar).when().post("/cars/").then().assertThat().statusCode(201);
+		
+		given().contentType(MediaType.APPLICATION_JSON)
+			.body(aPerson).when().post("/person/").then().assertThat().statusCode(201);
+		
+		Person person = get("/person/5").as(Person.class);
+		Car car = get("/cars/2").as(Car.class);
+		
+		given().contentType(MediaType.APPLICATION_JSON)
+			.when().post("/cars/sell/" + car.getId() + "/" + person.getId()).then().assertThat().statusCode(201);
+		
+
+		IDataSet dbDataSet = connection.createDataSet();
+		ITable actualTable = dbDataSet.getTable("CAR");
+		
+		IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(
+				new File("src/test/resources/carWithPersonData.xml"));
+		ITable expectedTable = expectedDataSet.getTable("CAR");
+		
+		Assertion.assertEquals(expectedTable, actualTable);
 	}
 	
 	@AfterClass

@@ -28,8 +28,10 @@ public class PersonManager {
 	private PreparedStatement sellCarStmt;
 
 	private PreparedStatement deleteAllPersonsStmt;
+	private PreparedStatement deleteAllCarsStmt;
 	private PreparedStatement getAllPersonsStmt;
 	private PreparedStatement getPersonByIdStmt;
+	private PreparedStatement getCarByIdStmt;
 
 	private PreparedStatement getAllPersonsWithCarsStmt;
 	private PreparedStatement getCarWithOwnerStmt;
@@ -70,9 +72,9 @@ public class PersonManager {
 			deleteAllPersonsStmt = connection.prepareStatement("DELETE FROM Person");
 			getAllPersonsStmt = connection.prepareStatement("SELECT p_id, name, yob FROM Person");
 			getPersonByIdStmt = connection.prepareStatement("SELECT p_id, name, yob FROM Person where p_id = ?");
-
+			deleteAllCarsStmt = connection.prepareStatement("DELETE FROM Car");
 			addCarStmt = connection.prepareStatement("INSERT INTO Car (model, yop) VALUES (?, ?)");
-
+			getCarByIdStmt = connection.prepareStatement("SELECT c_id, model, yop FROM Car where c_id = ?");
 			sellCarStmt = connection.prepareStatement("UPDATE Car SET owner_id = ? WHERE c_id = ?");
 
 			getAllPersonsWithCarsStmt = connection.prepareStatement(
@@ -95,6 +97,14 @@ public class PersonManager {
 	public void clearPersons() {
 		try {
 			deleteAllPersonsStmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void clearCars() {
+		try {
+			deleteAllCarsStmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -152,6 +162,26 @@ public class PersonManager {
 		}
 
 		return p;
+	}
+	
+	public Car getCar(Long id) {
+		Car c = new Car();
+		try {
+			getCarByIdStmt.setLong(1, id);
+			ResultSet rs = getCarByIdStmt.executeQuery();
+			
+			while (rs.next()) {
+				c.setId(rs.getLong("c_id"));
+				c.setModel(rs.getString("model"));
+				c.setYop(rs.getInt("yop"));
+				break;
+			}
+			return c;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return c;
 	}
 
 	public int addCar(Car car) {

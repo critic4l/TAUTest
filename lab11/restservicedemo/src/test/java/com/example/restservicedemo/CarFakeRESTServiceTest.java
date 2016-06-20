@@ -1,5 +1,6 @@
 package com.example.restservicedemo;
 
+import static com.jayway.restassured.RestAssured.delete;
 import static com.jayway.restassured.RestAssured.given;
 import static org.junit.Assert.assertNotNull;
 
@@ -75,6 +76,18 @@ public class CarFakeRESTServiceTest {
 		ITable table = dbDataSet.getTable("PERSON");
 		
 		assertNotNull(table);
+	}
+	
+	@Test
+	public void clearPersons() throws Exception {
+		
+		IDataSet dbDataSet = connection.createDataSet();
+		ITable table = dbDataSet.getTable("PERSON");
+		
+		assertNotNull(table);
+		
+		delete("/cars/").then().assertThat().statusCode(200);
+			
 	}
 	
 	@AfterClass
